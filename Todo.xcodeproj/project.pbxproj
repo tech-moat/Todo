@@ -13,6 +13,8 @@
 		96FB84B028C705B600E01677 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FB84AE28C705B600E01677 /* Main.storyboard */; };
 		96FB84B228C705C200E01677 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96FB84B128C705C200E01677 /* Assets.xcassets */; };
 		96FB84B528C705C200E01677 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96FB84B328C705C200E01677 /* LaunchScreen.storyboard */; };
+		96FB84BD28C7068E00E01677 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FB84BC28C7068E00E01677 /* ListViewController.swift */; };
+		96FB84BF28C706A400E01677 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FB84BE28C706A400E01677 /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		96FB84B128C705C200E01677 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		96FB84B428C705C200E01677 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		96FB84B628C705C200E01677 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		96FB84BC28C7068E00E01677 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		96FB84BE28C706A400E01677 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				96FB84B128C705C200E01677 /* Assets.xcassets */,
 				96FB84B328C705C200E01677 /* LaunchScreen.storyboard */,
 				96FB84B628C705C200E01677 /* Info.plist */,
+				96FB84BC28C7068E00E01677 /* ListViewController.swift */,
+				96FB84BE28C706A400E01677 /* AddViewController.swift */,
 			);
 			path = Todo;
 			sourceTree = "<group>";
@@ -138,8 +144,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96FB84BF28C706A400E01677 /* AddViewController.swift in Sources */,
 				96FB84AD28C705B600E01677 /* ViewController.swift in Sources */,
 				96FB84A928C705B600E01677 /* AppDelegate.swift in Sources */,
+				96FB84BD28C7068E00E01677 /* ListViewController.swift in Sources */,
 				96FB84AB28C705B600E01677 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
