@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ListViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -17,7 +18,7 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var dateArray = [String]()
     
-    
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,10 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         
         table.dataSource = self
+        
+        let memo: Memo? = read()
+        
+        
         
 //        titleArray = ["1", "2"]
 //
@@ -35,15 +40,21 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titleArray.count
+        return realm.objects(Memo.self).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         
-        cell?.textLabel?.text = titleArray[indexPath.row]
-        cell?.detailTextLabel?.text = dateArray[indexPath.row]
+//        cell?.textLabel?.text = titleArray[indexPath.row]
+//        cell?.detailTextLabel?.text = dateArray[indexPath.row]
         
+        
+        let todoData = realm.objects(Memo.self)
+//        print(todoData)
+        
+        cell?.textLabel?.text = todoData[indexPath.row].title
+        cell?.detailTextLabel?.text = todoData[indexPath.row].date
         
         return cell!
     }
@@ -52,20 +63,31 @@ class ListViewController: UIViewController, UITableViewDataSource, UITableViewDe
            return true
        }
        
-       func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-           switch editingStyle {
-           case .delete:
-               titleArray.remove(at: indexPath.row)
-               contentArray.remove(at: indexPath.row)
-               dateArray.remove(at: indexPath.row)
-               tableView.beginUpdates()
-               tableView.deleteRows(at: [indexPath], with: .automatic)
-               tableView.endUpdates()
-           case .insert, .none:
-               // NOP
-               break
-           }
+   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+       switch editingStyle {
+       case .delete:
+//               titleArray.remove(at: indexPath.row)
+//               contentArray.remove(at: indexPath.row)
+//               dateArray.remove(at: indexPath.row)
+           try! realm.write{
+               realm.delete(realm.objects(Memo.self)[indexPath.row])
+             }
+           tableView.beginUpdates()
+           tableView.deleteRows(at: [indexPath], with: .automatic)
+           tableView.endUpdates()
+       case .insert, .none:
+           // NOP
+           break
        }
+   }
+    
+    func read() -> Memo? {
+        return realm.objects(Memo.self).first
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        table?.reloadData()
+    }
 
     /*
     // MARK: - Navigation
